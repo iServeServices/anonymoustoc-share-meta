@@ -16,30 +16,35 @@ export async function GET(request) {
     });
   }
 
-  const post = await getPostFromFirestore(id).catch(() => null);
-  const { title, description, imageUrl } = buildOgFromPost(post);
-
+  const base = 'https://share.anonymoustoc.com'; // your Vercel/custom domain
+  const ogImage = `${base}/api/og-image?id=${encodeURIComponent(id)}`;
+  
   const html = `<!doctype html>
-<html>
+  <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <title>${escapeHtml(title)}</title>
-
-    <meta property="og:title" content="${escapeHtml(title)}" />
-    <meta property="og:description" content="${escapeHtml(description)}" />
-    <meta property="og:image" content="${imageUrl}" />
-    <meta property="og:type" content="article" />
-    <meta property="og:site_name" content="AnonymousToc" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="${escapeHtml(title)}" />
-    <meta name="twitter:description" content="${escapeHtml(description)}" />
-    <meta name="twitter:image" content="${imageUrl}" />
-
-    <meta http-equiv="refresh" content="0; url=https://www.anonymoustoc.com/ps?id=${encodeURIComponent(id)}" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <title>${title}</title>
+  <meta name="description" content="${desc}" />
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="AnonymousToc" />
+  <meta property="og:title" content="${title}" />
+  <meta property="og:description" content="${desc}" />
+  <meta property="og:image" content="${ogImage}" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="${title}" />
+  <meta name="twitter:description" content="${desc}" />
+  <meta name="twitter:image" content="${ogImage}" />
+  ...
   </head>
-  <body>Redirecting…</body>
-</html>`;
+  <body> ... </body>
+  </html>`;
+
 
   return new NextResponse(html, {
     headers: { "content-type": "text/html; charset=utf-8" },
@@ -54,5 +59,6 @@ function escapeHtml(s = "") {
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
 }
+
 
 
