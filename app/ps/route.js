@@ -1,6 +1,6 @@
 // /app/ps/route.js
 import { NextResponse } from "next/server";
-import { getPostFromFirestore } from './_firestore.js';
+import { getPostFromFirestore } from '../../lib/firestore.js';
 import { buildOgFromPost } from "../../lib/og.js";
 
 export const dynamic = "force-dynamic";
@@ -54,4 +54,5 @@ function escapeHtml(s = "") {
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
 }
+
 
