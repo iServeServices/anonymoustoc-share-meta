@@ -47,13 +47,17 @@ export async function GET(request) {
   <head>
     <meta charset="utf-8" />
     <title>${escapeHtml(title)}</title>
-
+    
+        // inside the <head> response you build for OG/Twitter
+    <title>A whisper from AnonymousToc</title>
+    <meta name="description" content="It’s the soul that matters." />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="${escapeHtml(siteName)}" />
-    <meta property="og:title" content="${escapeHtml(title)}" />
-    <meta property="og:description" content="${escapeHtml(description)}" />
+    <meta property="og:site_name" content="AnonymousToc" />
+    <meta property="og:title" content="A whisper from AnonymousToc" />
+    <meta property="og:description" content="A whisper from AnonymousToc" />
     <meta property="og:image" content="${ogImage}" />
     <meta property="og:url" content="${origin}/ps?id=${encodeURIComponent(id)}" />
+
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${escapeHtml(title)}" />
@@ -115,3 +119,4 @@ export async function GET(request) {
     headers: { 'Content-Type': 'text/html; charset=utf-8' },
   });
 }
+
