@@ -44,7 +44,7 @@ export async function GET(request) {
   const APP_SCHEME = process.env.APP_SCHEME || 'anonymoustoc://ps?id=';
   const IOS_STORE =
     process.env.IOS_STORE_URL ||
-    'https://apps.apple.com/app/idYOUR_APP_ID'; // TODO: replace real ID
+    'https://apps.apple.com/app/id6746080508'; // TODO: replace real ID
   const AND_STORE =
     process.env.ANDROID_STORE_URL ||
     'https://play.google.com/store/apps/details?id=your.package'; // TODO: replace real package
@@ -148,3 +148,4 @@ export async function GET(request) {
     headers: { 'Content-Type': 'text/html; charset=utf-8' },
   });
 }
+
