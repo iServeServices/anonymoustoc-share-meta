@@ -1,9 +1,9 @@
-<<<<<<< HEAD
+// next.config.js
 /** @type {import('next').NextConfig} */
-const nextConfig = { output: 'standalone' };
-export default nextConfig;
-=======
-/** @type {import('next').NextConfig} */
-const nextConfig = { output: 'standalone' };
-export default nextConfig;
->>>>>>> e272959 (Add/Update share-meta files locally)
+const nextConfig = {
+  reactStrictMode: true,
+  // no deprecated experimental.appDir here
+  images: { unoptimized: true }, // safe default; remove if you don't need
+};
+
+module.exports = nextConfig;
